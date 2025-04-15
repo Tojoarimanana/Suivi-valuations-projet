@@ -176,7 +176,8 @@ if uploaded_file:
         
         # Créer un dictionnaire de couleurs, en s'assurant que toutes les clés existent
         unique_tasks = gantt_data["Task"].unique()
-        color_dict = {task: color for task, color in zip(unique_tasks, px.colors.qualitative.Set3[:len(unique_tasks)])}
+        
+        color_dict = {task: f'rgba({int(255 * (i / len(unique_tasks)))}, 0, {int(255 * (1 - i / len(unique_tasks)))}, 0.6)' for i, task in enumerate(unique_tasks)}
 
         # Créer le graphique Gantt avec les couleurs
         fig_gantt = ff.create_gantt(
@@ -190,6 +191,7 @@ if uploaded_file:
             height=600,
             title="Diagramme de Gantt avec Progression",
             colors=color_dict  # Utilisation des couleurs mappées par le dictionnaire
+           
         )
 
         st.plotly_chart(fig_gantt, use_container_width=True)
