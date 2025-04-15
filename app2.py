@@ -254,12 +254,4 @@ if uploaded_file:
         st.subheader("📋 Tableau de Données")
         st.dataframe(df)
 
-# Créer une carte centrée sur une latitude et longitude spécifiques
-m = folium.Map(location=[48.8566, 2.3522], zoom_start=12)  # Exemple pour Paris
-
-# Ajouter un marqueur sur la carte
-folium.Marker([48.8566, 2.3522], popup="Paris").add_to(m)
-
-# Afficher la carte dans l'application Streamlit
-st_folium(m, width=725)
 
